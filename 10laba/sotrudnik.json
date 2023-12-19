@@ -1,0 +1,13 @@
+[
+  {"surname":"[p","namee":"sdf","middlename":"sdf","datarod":"20.12.12",
+  "passportNomSer":"232354345","dolshnost":"adm",
+  "zp":20,"user_id":3,"id":323}
+
+,
+  {"surname":"хз","namee":"хз","middlename":"хз","datarod":"20.20.2000","passportNomSer":"09876546",
+    "dolshnost":"чёрт","zp":20,"user_id":0,"id":90},
+  
+  {"surname":"654","namee":"765","middlename":"6543","datarod":"20.20.2000","passportNomSer":"09876546",
+    "dolshnost":"чёрт","zp":20,"user_id":5,"id":963}
+
+]
