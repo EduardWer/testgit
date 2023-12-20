@@ -325,16 +325,18 @@ public class skladmen : role
         Console.Clear();
         Console.WriteLine("Вы меняете товар");
         pathjson pathjson = new pathjson();
-        tovar tovar = new tovar();
+        
         List<tovar> tovars = Serialization.Deserialization<List<tovar>>(pathjson.pathdlyasklad);
         int i = 1;
         foreach (var item in tovars)
         {
             Console.WriteLine($"{i++} {item.naimenovanie}");
         }
-        Console.WriteLine("Выберите id товара который хотите изменить: ");
+        Console.Write("Выберите id товара который хотите изменить: ");
+        
         try
         {
+            int vibor = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите id товара: ");
             int id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите наименование: ");
@@ -382,6 +384,109 @@ public class skladmen : role
             Thread.Sleep(1000);
         }
     }
+    public override void poisk()
+    {
+        throw new NotImplementedException();
+    }
+    
+    
+    
+}
+
+public class buh : role
+{
+    public buh() : base("buh")
+    {
+
+    }
+
+    public override void dobavlenie()
+    {
+        Console.Clear();
+        Console.WriteLine("Вы добавляете транзакцию");
+        pathjson pathjson = new pathjson();
+        
+        List<pokypka> pokypki = Serialization.Deserialization<List<pokypka>>(pathjson.pathpokypki);
+        pokypka new_pokypka = new pokypka();
+        try
+        {
+            Console.WriteLine("Наименование: ");
+            new_pokypka.chokupili = Console.ReadLine();
+            Console.WriteLine("Коль-во");
+            new_pokypka.skokavsego = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Общая сумма: ");
+            new_pokypka.cenavsego = Convert.ToInt32(Console.ReadLine());
+            
+            
+            pokypki.Add(new_pokypka);
+            Serialization.Sirialize(pokypki,pathjson.pathpokypki);
+        }
+        catch
+        {
+            Console.WriteLine("Проеб");
+            Thread.Sleep(1000);
+        }   
+    }
+
+    public override void ydal()
+    {
+        Console.Clear();
+        Console.WriteLine("Вы удалете");
+        pathjson pathjson = new pathjson();
+        
+        List<pokypka> pokypki = Serialization.Deserialization<List<pokypka>>(pathjson.pathpokypki);
+        int i = 1;
+        foreach (var item in pokypki)
+        {
+            Console.WriteLine($"{i++} {item.chokupili} , {item.skokavsego}");
+        }
+        Console.WriteLine("Выберите товар, который хотите удалить: ");
+        try
+        {
+            int vibor = Convert.ToInt32(Console.ReadLine());
+            vibor -= 1;
+            pokypki.RemoveAt(vibor);
+            Serialization.Sirialize(pokypki, pathjson.pathpokypki);
+        }
+        catch
+        {
+            Console.WriteLine("Проеб");
+            Thread.Sleep(1000);
+        }
+    }
+
+    public override void izmen()
+    {
+        Console.Clear();
+        Console.WriteLine("Вы меняете Отчтность");
+        pathjson pathjson = new pathjson();
+
+        List<pokypka> pokypki = Serialization.Deserialization<List<pokypka>>(pathjson.pathpokypki);
+        int i = 1;
+        foreach (var item in pokypki)
+        {
+            Console.WriteLine($"{i++} {item.chokupili}");
+        }
+
+        Console.WriteLine("Выберите id товара который хотите изменить: ");
+        try
+        {
+            int vibor = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Наименование");
+            pokypki[vibor].chokupili = Console.ReadLine();
+            Console.WriteLine("Сумма выкупа");
+            pokypki[vibor].cenavsego = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите колво купленных позиций");
+            pokypki[vibor].skokavsego = Convert.ToInt32(Console.ReadLine());
+            Serialization.Sirialize(pokypki, pathjson.pathpokypki);
+        }
+        catch
+        {
+            Console.WriteLine("Проёб");
+            Thread.Sleep(1000);
+        }
+    }
+
     public override void poisk()
     {
         throw new NotImplementedException();

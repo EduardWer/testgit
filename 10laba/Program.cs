@@ -8,9 +8,9 @@ namespace _10laba
     {
         static void Main(string[] args)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
-            Console.InputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
+            //Console.InputEncoding = Encoding.UTF8;
+            //Console.OutputEncoding = Encoding.UTF8;
             while (true)
             {
                 Console.Clear();
@@ -56,9 +56,8 @@ namespace _10laba
                                 Thread.Sleep(1000);
                                 break;
                             case "buh":
-                                Console.WriteLine("|-----------------------------------------------------------|");
-                                Console.WriteLine("|                        Вы buh                             |");
-                                Console.WriteLine("|-----------------------------------------------------------|");
+                                axyi.buh(item.id);
+                                Thread.Sleep(1000);
                                 break;
                             case "prodashnik":
                                 axyi.prodashnik(item.id);

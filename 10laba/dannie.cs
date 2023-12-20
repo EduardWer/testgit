@@ -44,10 +44,10 @@ internal class pokypka
 
 internal class pathjson //хранит пути до json :_)
 {
-    public string pathdlyaavtoriz = "C:\\Users\\Eduard\\RiderProjects\\10laba\\10laba\\avtorizacia.json";
-    public string pathdlyasotrudnik = "C:\\Users\\Eduard\\RiderProjects\\10laba\\10laba\\sotrudnik.json";
-    public string pathdlyasklad = "C:\\Users\\Eduard\\RiderProjects\\10laba\\10laba\\sklad.json";
-    public string pathpokypki = "C:\\Users\\Eduard\\RiderProjects\\10laba\\10laba\\pokypki.json";
+    public string pathdlyaavtoriz = "C:\\Users\\Admin\\RiderProjects\\testgit\\10laba\\avtorizacia.json";
+    public string pathdlyasotrudnik = "C:\\Users\\Admin\\RiderProjects\\testgit\\10laba\\sotrudnik.json";
+    public string pathdlyasklad = "C:\\Users\\Admin\\RiderProjects\\testgit\\10laba\\sklad.json";
+    public string pathpokypki = "C:\\Users\\Admin\\RiderProjects\\testgit\\10laba\\pokypki.json";
 }
   
 

@@ -1,10 +1,4 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Authentication;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace _10laba;
 
@@ -220,55 +214,60 @@ public class funrole
 
     public void prodashnik(int userid)
     {
-        Console.Clear();
-        var skladmen = new skladmen();
 
-        pathjson pathjson = new pathjson();
-        var tovars = Serialization.Deserialization<List<tovar>>(pathjson.pathdlyasklad);
-        var sotrudniks = Serialization.Deserialization<List<sotrudnik>>(pathjson.pathdlyasotrudnik);
-        foreach (sotrudnik sotrudnik in sotrudniks)
-        {
-            if (sotrudnik.user_id == userid)
-            {
-                Console.Clear();
-                Console.WriteLine(" |-----------------------------------------------------------|");
-                Console.WriteLine($"       Вы залетели как prodashnik, {sotrudnik.namee}         ");
-                Console.WriteLine(" |-----------------------------------------------------------|");
-                break;
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("|-----------------------------------------------------------|");
-                Console.WriteLine("|                      Вы prodashnik                        |");
-                Console.WriteLine("|-----------------------------------------------------------|");
-
-
-            }
-        }
-
-        int i = 1;
-        foreach (tovar tovar in tovars)
-        {
-            Console.WriteLine($"     {i++}  {tovar.naimenovanie}");
-        }
 
         var key = new ConsoleKeyInfo();
-        var r = 0;
+
         while (key.KeyChar != 'e')
         {
             Console.Clear();
+            Console.Clear();
+            var skladmen = new skladmen();
+
+            pathjson pathjson = new pathjson();
+            var tovars = Serialization.Deserialization<List<tovar>>(pathjson.pathdlyasklad);
+            var sotrudniks = Serialization.Deserialization<List<sotrudnik>>(pathjson.pathdlyasotrudnik);
+            foreach (sotrudnik sotrudnik in sotrudniks)
+            {
+                if (sotrudnik.user_id == userid)
+                {
+                    Console.Clear();
+                    Console.WriteLine(" |-----------------------------------------------------------|");
+                    Console.WriteLine($"       Вы залетели как prodashnik, {sotrudnik.namee}         ");
+                    Console.WriteLine(" |-----------------------------------------------------------|");
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("|-----------------------------------------------------------|");
+                    Console.WriteLine("|                      Вы prodashnik                        |");
+                    Console.WriteLine("|-----------------------------------------------------------|");
+
+
+                }
+            }
+
+
+
+            int i = 1;
+            foreach (tovar tovar in tovars)
+            {
+                Console.WriteLine($"     {i++}  {tovar.naimenovanie}");
+            }
+
             var vibor = skladmen.CursorMenu(3, tovars.Count + 2) - 3;
-            
+            int r = 0;
             var end = true;
             while (end)
             {
-                
-                Console.WriteLine($"Выбран товар {tovars[vibor].naimenovanie}  на складе {tovars[vibor].skokavsego}" +
+
+                Console.Clear();
+                Console.WriteLine($"Выбран товар {tovars[vibor].naimenovanie}  на складе {tovars[vibor].skokavsego}\n" +
                                   $"Кол-во {r}");
                 var colvo = tovars[vibor].skokavsego;
                 var price = tovars[vibor].odnashtykacena;
-                key = Console.ReadKey();
+                key = Console.ReadKey(true);
                 switch (key.KeyChar)
                 {
                     case '+':
@@ -288,36 +287,105 @@ public class funrole
 
                         break;
                     case 's':
-
                         var pokypkas = Serialization.Deserialization<List<pokypka>>(pathjson.pathpokypki);
-
                         var all_prise = price * r;
                         tovars[vibor].skokavsego = colvo - r;
-                        
                         var pokyp = new pokypka();
-                        pokyp.skokavsego = colvo - r;
+                        pokyp.skokavsego =  r;
                         pokyp.cenavsego = all_prise;
                         pokyp.chokupili = tovars[vibor].naimenovanie;
                         pokypkas.Add(pokyp);
-                        
-                        Serialization.Sirialize(pokypkas,pathjson.pathpokypki);
-                        Serialization.Sirialize(tovars,pathjson.pathdlyasklad);
-                        
-                        
 
-                        
+                        Serialization.Sirialize(pokypkas, pathjson.pathpokypki);
+                        Serialization.Sirialize(tovars, pathjson.pathdlyasklad);
                         end = false;
                         break;
 
-                        Console.ReadKey();
+
 
 
 
                 }
 
+            }
+        }
+    }
 
+
+
+    public void buh(int userid)
+    {
+        Console.WriteLine("|-----------------------------------------------------------|");
+        Console.WriteLine("|                        Вы buh                             |");
+        Console.WriteLine("|-----------------------------------------------------------|");
+
+
+        bool pravda = true;
+        while (pravda != false)
+        {
+            Console.Clear();
+
+            pathjson pathjson = new pathjson();
+            List<pokypka> pokypki = Serialization.Deserialization<List<pokypka>>(pathjson.pathpokypki);
+            List<user> users = Serialization.Deserialization<List<user>>(pathjson.pathdlyaavtoriz);
+            List<sotrudnik> sotrudniks = Serialization.Deserialization<List<sotrudnik>>(pathjson.pathdlyasotrudnik);
+            foreach (user user1 in users)
+            {
+                foreach (sotrudnik sotrudnik1 in sotrudniks)
+                {
+                    if (userid == sotrudnik1.user_id)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("|-----------------------------------------------------------|");
+                        Console.WriteLine($"|                        Вы buh  , {sotrudnik1.namee}      |");
+                        Console.WriteLine("|-----------------------------------------------------------|");
+                        break;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("|-----------------------------------------------------------|");
+                        Console.WriteLine("|                        Вы buh                             |");
+                        Console.WriteLine("|-----------------------------------------------------------|");
+
+                    }
+                }
+            }
+
+            int i = 1;
+            foreach (pokypka pokypka in pokypki)
+            {
+                Console.WriteLine($"     {i++}  {pokypka.chokupili}");
+            }
+
+            var buh = new buh();
+            var key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Z:
+                    buh.dobavlenie();
+                    break;
+                case ConsoleKey.X:
+                    buh.izmen();
+                    break;
+                case ConsoleKey.C:
+                    buh.ydal();
+                    break;
+                case ConsoleKey.E:
+                    pravda = false;
+                    break;
+                default:
+                    var vibor = buh.CursorMenu(3, users.Count + 2) - 3; //то что рисунки в паинте ебать ахуеть
+                    Console.Clear();
+                    Console.WriteLine(
+                        $"Наименование {pokypki[vibor].chokupili} \n" +
+                        $"Кол-во {pokypki[vibor].skokavsego} \n" +
+                        $"Цена {pokypki[vibor].cenavsego}");
+                    Console.ReadKey();
+                    break;
             }
         }
     }
 }
+
         
